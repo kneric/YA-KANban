@@ -31,7 +31,7 @@ import Wall from '@/components/Wall'
 import firebase from 'firebase'
 
 const config = {
-    apiKey: "AIzaSyAaKp407b01gPbYMaXOCYd4FIdwb_1LNkI",
+    apiKey: process.env.APIkey,
     authDomain: "my-hacktiv8-project.firebaseapp.com",
     databaseURL: "https://my-hacktiv8-project.firebaseio.com",
     projectId: "my-hacktiv8-project",
