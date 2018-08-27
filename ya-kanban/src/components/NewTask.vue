@@ -1,9 +1,13 @@
 <template>
-  <div class="add-task d-flex">
-    <div class="p-2">YA-KANban</div>
-    <button type="button" class="btn btn-primary offset-md-9" data-toggle="modal" data-target="#taskModal">
-      New Task
-    </button>
+  <div class="add-task">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>YA-KANban</h1>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">
+          New Task
+        </button>
+      </div>
+    </div>
     <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -14,22 +18,24 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Task Name</label>
-              <input type="text" class="form-control" v-model="newTask.name">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Priority</label>
-              <input type="number" class="form-control" min="1" max="5" v-model="newTask.priority">
-            </div>
-             <div class="form-group">
-              <label for="exampleFormControlTextarea1">Short Description</label>
-              <textarea class="form-control" rows="3" v-model="newTask.desc"></textarea>
-            </div>
+            <form action="">
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Task Name</label>
+                <input type="text" v-model="newTask.name" name="name" class="form-control" aria-required="true" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Priority</label>
+                <input type="number" class="form-control" min="1" max="5" v-model.number="newTask.priority" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Short Description</label>
+                <textarea class="form-control" rows="3" v-model="newTask.desc" required></textarea>
+              </div>
+            </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="addTask">Add</button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" @click="addTask">Add</button>
           </div>
         </div>
       </div>
@@ -44,10 +50,10 @@
     data () {
       return {
         newTask: {
-          name: '',
-          priority: 0,
+          name: null,
+          priority: 1,
           desc: '',
-          status: 0
+          status: 1
         }
       }
     },
@@ -56,8 +62,9 @@
         this.$emit('addTask', this.newTask);
          
         this.newTask.name = '';
-        this.newTask.priority = 0;
+        this.newTask.priority = 1;
         this.newTask.desc = '';
+
       }
     }
   }
